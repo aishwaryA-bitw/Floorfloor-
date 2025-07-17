@@ -119,10 +119,8 @@ const Building = ({ onNavigateToBuilding }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
-      {/* <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto"> */}
-      <div className="p-4  space-y-2 max-w-7xl mx-auto">
+      <div className="p-4 space-y-2 max-w-full mx-auto">
         {/* Header Section */}
-        {/* <div className="bg-white rounded-2xl shadow-lg border border-blue-100 p-6 sm:p-8"> */}
         <div className="bg-white rounded-2xl shadow-lg border border-blue-100 p-2 sm:p-3">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex items-center space-x-4">
@@ -323,7 +321,6 @@ const Building = ({ onNavigateToBuilding }) => {
 
         {/* Buildings Table */}
         <div className="bg-white rounded-2xl shadow-lg border border-blue-100 overflow-hidden">
-          {/* <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6"> */}
           <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div>
@@ -372,28 +369,28 @@ const Building = ({ onNavigateToBuilding }) => {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[768px]">
-              <thead className="bg-blue-50 border-b border-blue-100 sticky top-0 z-10 table w-full table-fixed">
+            <table className="w-full">
+              <thead className="bg-blue-50 border-b border-blue-100 sticky top-0 z-10">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider">
+                  <th className="px-4 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider min-w-[100px]">
                     Serial No.
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider">
+                  <th className="px-4 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider min-w-[200px]">
                     Building Name
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider">
+                  <th className="px-4 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider min-w-[300px]">
                     Address
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider">
+                  <th className="px-4 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider min-w-[120px]">
                     Total Floors
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider">
+                  <th className="px-4 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider min-w-[200px]">
                     Floor Names
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider">
+                  <th className="px-4 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider min-w-[250px]">
                     Flat Numbers
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider">
+                  <th className="px-4 py-4 text-left text-xs font-bold text-blue-800 uppercase tracking-wider min-w-[120px]">
                     Actions
                   </th>
                 </tr>
@@ -419,29 +416,31 @@ const Building = ({ onNavigateToBuilding }) => {
                   </tr>
                 </tbody>
               ) : (
-                <tbody className="block max-h-[calc(100vh-300px)] overflow-y-auto divide-y divide-blue-100 scrollbar-hide">
+                <tbody className="divide-y divide-blue-100">
                   {filteredBuildingData.map((building, index) => (
                     <tr
                       key={index}
                       className="hover:bg-blue-50/50 transition-colors duration-200 group"
                     >
-                      <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                      <td className="px-4 py-4 text-sm font-medium text-gray-900">
                         <div className="flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-800 rounded-full font-bold">
                           {building["Serial No."]}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-sm font-semibold text-gray-900">
-                        {building["Budling Name"]}
+                      <td className="px-4 py-4 text-sm font-semibold text-gray-900">
+                        <div className="break-words">
+                          {building["Budling Name"]}
+                        </div>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-600 max-w-xs">
+                      <td className="px-4 py-4 text-sm text-gray-600">
                         <div className="flex items-start space-x-2">
                           <MapPin className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                          <span className="truncate">
+                          <span className="break-words">
                             {building["Address"]}
                           </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-4 py-4 text-sm text-gray-900">
                         <div className="flex items-center space-x-2">
                           <Hash className="h-4 w-4 text-blue-500" />
                           <span className="font-medium">
@@ -449,15 +448,17 @@ const Building = ({ onNavigateToBuilding }) => {
                           </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-600 max-w-xs">
-                        <div className="truncate">{building["Floor Name"]}</div>
+                      <td className="px-4 py-4 text-sm text-gray-600">
+                        <div className="break-words whitespace-pre-wrap">
+                          {building["Floor Name"]}
+                        </div>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-600 max-w-xs">
-                        <div className="truncate font-mono text-xs bg-gray-100 px-2 py-1 rounded">
+                      <td className="px-4 py-4 text-sm text-gray-600">
+                        <div className="break-words font-mono text-xs bg-gray-100 px-2 py-1 rounded whitespace-pre-wrap">
                           {building["Each Floor Flat No"]}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-sm">
+                      <td className="px-4 py-4 text-sm">
                         <button
                           onClick={() => onNavigateToBuilding(building)}
                           className="group/btn inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
